@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Little To Do</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="workspace" aria-label="To do list app">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Today</p>
+            <h1>Little To Do</h1>
+          </div>
+          <div class="stats" aria-label="Task summary">
+            <span><strong id="doneCount">0</strong> done</span>
+            <span><strong id="openCount">0</strong> open</span>
+          </div>
+        </header>
+
+        <form class="task-form" id="taskForm">
+          <label class="field task-title">
+            <span>Task</span>
+            <input id="taskInput" type="text" placeholder="Add one small thing" autocomplete="off" required>
+          </label>
+          <label class="field">
+            <span>List</span>
+            <select id="taskList">
+              <option value="This week">This week</option>
+              <option value="Talk to Doug about">Talk to Doug about</option>
+              <option value="Errands">Errands</option>
+              <option value="Later">Later</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Due</span>
+            <input id="taskDue" type="date">
+          </label>
+          <fieldset class="priority" aria-label="Priority">
+            <legend>Priority</legend>
+            <label>
+              <input type="radio" name="priority" value="low">
+              <span>Low</span>
+            </label>
+            <label>
+              <input type="radio" name="priority" value="normal" checked>
+              <span>Normal</span>
+            </label>
+            <label>
+              <input type="radio" name="priority" value="high">
+              <span>High</span>
+            </label>
+          </fieldset>
+          <button class="add-button" type="submit" aria-label="Add task">+</button>
+        </form>
+
+        <nav class="filters" aria-label="Task filters">
+          <button class="filter is-active" type="button" data-filter="all">All</button>
+          <button class="filter" type="button" data-filter="open">Open</button>
+          <button class="filter" type="button" data-filter="done">Done</button>
+          <button class="filter" type="button" data-filter="high">High</button>
+        </nav>
+
+        <section class="board">
+          <div class="board-head">
+            <h2 id="viewTitle">All tasks</h2>
+            <button class="clear-button" id="clearDone" type="button">Clear done</button>
+          </div>
+          <ul class="task-list" id="tasks" aria-live="polite"></ul>
+          <p class="empty" id="emptyState">Nothing here. Luxurious.</p>
+        </section>
+      </section>
+    </main>
+
+    <template id="taskTemplate">
+      <li class="task-card">
+        <label class="check-wrap">
+          <input class="task-check" type="checkbox">
+          <span aria-hidden="true"></span>
+        </label>
+        <div class="task-main">
+          <input class="task-name" type="text">
+          <div class="task-meta">
+            <span class="task-group"></span>
+            <span class="task-due"></span>
+            <span class="task-priority"></span>
+          </div>
+        </div>
+        <button class="delete-button" type="button" aria-label="Delete task">x</button>
+      </li>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
